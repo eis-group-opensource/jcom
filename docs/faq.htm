@@ -1,0 +1,94 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META NAME="KEYWORDS" CONTENT="Java,Com,Bridge,GNU,LGPL,JNI,Microsoft,component,object,model,Excel,Windows,XML">
+<META NAME="description" CONTENT="This is a software project web page for Java-COM Bridge library called JCom. This software enable Java to access COM Objects such as Excel or Word.">
+<title>プログラマー's研究所/JCom(Java-COMブリッジ)</title>
+</head>
+
+<body text="#000000" bgcolor="#FFFFFF">
+
+<center><h1><font color="brown">JCom(Java-COMブリッジ)</font></h1></center>
+<center><IMG SRC="./jcom.jpg"></center>
+<BR>
+<!-- <center>Japanese | <A HREF="index_eng.htm">English</A></center> -->
+
+<BR>
+<H2>FAQ(よくある質問)</H2>
+<HR><!-- ================================================================================ -->
+<H4>LinuxなどWindows以外でも動きますか？</H4>
+いいえ、動きません。<BR>
+JComはJNI(Java Native Interface)を使っており、Windows以外には対応していません。<BR>
+そもそも、COM自体がWindows以外では動きません。
+イメージ図<BR>
+<CENTER><IMG SRC="onWindows.png"></CENTER><BR>
+<CENTER><IMG SRC="onLinux.png"></CENTER><BR>
+<HR><!-- ================================================================================ -->
+<H4>以下のエラーが出て、JComが実行できません</H4>
+<PRE>Exception in thread "main" java.lang.UnsatisfiedLinkError: no jcom in java.library.path
+        at java.lang.ClassLoader.loadLibrary(Unknown Source)
+        at java.lang.Runtime.loadLibrary0(Unknown Source)
+        at java.lang.System.loadLibrary(Unknown Source)
+        at jp.ne.so_net.ga2.no_ji.jcom.IDispatch.<clinit>(IDispatch.java:288)</PRE>
+jcom.dll のロードに失敗していますね。
+どうやら、JComのインストールに失敗していると思われます。
+以下のプログラムを実行して、使われているJavaのパスを確認してください。(ShowPath.java)
+<PRE><FONT COLOR="brown">
+public class ShowPath {
+    public static void main(String[] args) throws Exception {
+        System.out.println("java.home="+System.getProperty("java.home"));
+        System.out.println("この下の bin     に jcom.dll を、");
+        System.out.println("この下の lib/ext に jcom.jar をコピーしましょう。");
+    }
+}</FONT></PRE>
+でも、私も完全には理解していないのですが、
+コンパイル時には、OSの環境変数の <CODE>CLASSPATH</CODE> を参照し、
+実行時には、Javaのプロパティの、<CODE>"java.home"</CODE>を参照しているようです。
+例えばWindowsの場合、C:\JDK1.3\ がコンパイル時、実行時には C:\Program Files\JavaSoft\JRE\1.3\
+という感じになるようです。
+<HR><!-- ================================================================================ -->
+<H4>サーブレットでも使えますか？</H4>
+使えます。<BR>
+読者からサーブレットでも使えたという報告がありました。
+ただし、サーブレットのあるサーバはOSがWindowsである必要があります。
+
+<HR><!-- ================================================================================ -->
+<H4>アプレットでも使えますか？</H4>
+まず無理でしょう。
+JComはCOMとアクセスするため、JNI(Java Native Interface)を使っていますが、
+アプレットではこのJNIは使えません。
+まず使えるようにするには、独自のセキュリティを設定し、
+クライアントにExcelなど利用するＣＯＭのアプリケーションがインストールされている必要があります。
+さらにJComがダウンロード済みでなければなりません。
+可能かもしれませんが、障害が多く、オススメできません。
+<HR><!-- ================================================================================ -->
+<H4>ISink、コネクションポイント、イベントには対応していますか？</H4>
+ゴメンなさい。対応していません。
+<HR><!-- ================================================================================ -->
+<H4>Java の Long に対応していますか？　４バイト以上の整数を扱いたいのですが。</H4>
+COM自体が64bit整数をサポートしていません。従って、JComで対応することは出来ません。
+以下の方法で回避できるでしょう。
+<LI>上位４バイトと下位４バイトに分ける<BR>
+<LI>文字列に直して送る。<BR>
+<BR>
+不思議なことに、VT_I8 という、それらしい定義があるにもかかわらず、
+ほとんどのコードはVT_I8には対応していません。
+<HR><!-- ================================================================================ -->
+<H4>エラーが出ているのですが、HRESULTとは何ですか？</H4>
+ＣＯＭ(もしくはWindows)のエラーコードです。
+VC++を持っている方なら、winerror.hでその意味を調べることが出来ます。
+ある程度、原因を特定することが出来るでしょう。
+<HR><!-- ================================================================================ -->
+<H4>Excelのシートやセルのコピーが使いたいのですが・・・</H4>
+Version2.22以前のjcom.dllにバグがありました。申し訳ありません。<BR>
+引数にオブジェクト、すなわちIDispatchがある場合にエラーになってしまいます。
+(判断の順序により、IDispatchがすべてIUnknownと誤認されてました。)
+また、引数にnullを設定した場合もエラーになってしまいます。
+（VT_NULLにすべきをVT_EMPTYにしていました）<BR>
+これらのバグはVersion2.23で修正しましたので、それを使ってください。
+あわせて、ExcelRange.Copy()、ExcelWorksheet.Copy()、そして ExcelWorksheets.Copy()の
+メソッドを実装しました。
+<HR><!-- ================================================================================ -->
+<a href="../index.html">戻る</a><br>
+</body>
+</html>

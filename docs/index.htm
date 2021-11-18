@@ -1,0 +1,187 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META NAME="KEYWORDS" CONTENT="Java,Com,Bridge,GNU,LGPL,JNI,Microsoft,component,object,model,Excel,Windows,XML">
+<META NAME="description" CONTENT="This is a software project web page for Java-COM Bridge library called JCom. 
+This software enable Java to access COM Objects such as Excel or Word.">
+<title>プログラマー's研究所/JCom(Java-COMブリッジ)</title>
+</head>
+
+<body text="#000000" bgcolor="#FFFFFF">
+
+<center><h1><font color="brown">JCom(Java-COMブリッジ)</font></h1></center>
+<center><IMG SRC="./jcom.jpg"></center>
+<BR>
+<center>Japanese | <A HREF="index_eng.htm">English</A></center>
+
+<BR>
+<H2>はじめに</H2>
+あなたはマイクロソフトが好きですか？<BR>
+答えがどうであれ、大半の人々がWindowsやOffice製品を
+使っているのは事実です。
+これらはＣＯＭ(component object model)アーキテクチャに
+基づいて作られています。もしＪａｖａからＣＯＭが使えれば、
+マイクロソフトの大半の製品がＪａｖａから使えるようになるでしょう。
+ＶＢＡで扱うように・・・。
+
+<center><a href="manga_page1.htm">４コマまんが</A></center>
+
+<H2>JComとは</H2>
+
+JComとはJavaからWindowsのCOMを利用することのできる
+Java-COMブリッジです。ExcelやWordなど、既存のCOMの
+機能をJavaから利用することができます。<BR>
+<BR>
+Windowsにはマイクロソフト社が作った大量のCOMが用意
+されています。これらはVisual-BASICやVB-Scriptなどから
+利用でき、マイクロソフト社が目指す、新しいプログラ
+ミングスタイルの鍵となっています。<BR>
+<BR>
+一方、Javaはサーバアプリケーション、アプレット、
+組み込みなどの分野を中心に広がっています。
+しかし、クライアントアプリケーションの分野では、
+まだまだ遅れています。Javaで作られたアプリケーション
+はほとんどありません。<BR>
+<BR>
+ならば、すでにあるアプリケーションを利用しない手は
+ありません。COMはそのアプリケーションを外部から
+利用するための共通のインターフェースです。COMを
+Javaから利用できるようにすれば、それに対応した
+アプリケーションはすべてJavaから利用できるように
+なります。<BR>
+<BR>
+例えば、サーバアプリケーションで、DBの情報を集計し、
+用意されたExcelのフォーマットにまとめ、印刷する、
+ということができるでしょう。あるいは、クライアント
+のアプリケーションでも、Excelを帳票出力のための
+ミドルウェアとして使うこともできるでしょう。
+ひょっとしたら、認証済みアプレットでも使えるかも
+しれません。JavaからOffice製品、およびWindows自身
+の機能を利用できるようになります。<BR>
+<BR>
+一部の熱狂的なJava信者には、この方法は邪道と思わ
+れるかもしれません。本来なら、Java-Beansを作り、
+それを利用すべきですから。しかし、Beansを作り、
+今のMS-Officeのレベルまで達するのには、いくらかの
+歳月が必要です。現実問題として、ユーザの多くは、
+Windowsを使っており、MS-Officeを使っているのです。
+私が懸念しているのは、100%PureJavaにこだわるあまり、
+Javaの採用が断念されることです。これらに対抗するの
+ではなく、それを包み込む形でJavaの利用範囲を広げ
+たいのです。これがこのJComの目的です。<BR>
+<BR>
+<H2>サンプル</H2>
+<A href="./demo.htm">こちら</A>
+
+<BR>
+<H2>ダウンロード</H2>
+<A HREF="jcom223.zip">jcom223.zip</A>(???,???byte)<BR>
+ライブラリ(jcom.jar+jcom.dll)、ソース、ドキュメント、サンプル付きです。<BR>
+<BR>
+<BR>
+<H2>インストール方法、技術情報</H2>
+<A HREF="guide.html">guide.html</A><BR>
+<BR>
+<BR>
+<H2>ライセンス</H2>
+GNU LGPLとします。<BR>
+<A HREF="http://www.gnu.org/copyleft/lesser.html">http://www.gnu.org/copyleft/lesser.html</A>原文<BR>
+<A HREF="http://www.vector.co.jp/soft/data/prog/se086178.html">http://www.vector.co.jp/soft/data/prog/se086178.html</A>邦訳(参考)<BR>
+<BR>
+<BR>
+<H2>FAQ(よくある質問)</H2>
+<A HREF="faq.htm">faq.htm</A>
+<BR>
+
+<H2>サポート</H2>
+ホームページ:<A HREF="http://www.hcn.zaq.ne.jp/no-ji/jcom/index.htm">
+http://www.hcn.zaq.ne.jp/no-ji/jcom/index.htm</A><BR>
+メール:<a href="mailto:no-ji@hcn.zaq.ne.jp">mailto:no-ji@hcn.zaq.ne.jp</A>
+
+<H2>ご利用していただいた（または、ご利用予定の）ソフト</H2>
+<FONT COLOR="purple">◆</FONT>Xi (XML埋め込み言語)<BR>
+<A HREF="http://www.baykit.org/">http://www.baykit.org/</A><BR>
+XML MAGAZINE 02号に記事が載っています。162ページに、JComを紹介して頂きました。
+ありがとうございます。<BR>
+<BR>
+<FONT COLOR="purple">◆</FONT>Pnuts (Javaによるスクリプト言語)<BR>
+<A HREF="http://javacenter.sun.co.jp/pnuts/">http://javacenter.sun.co.jp/pnuts/</A><BR>
+JAVA PRESS Vol.9 等に記事があります。
+<BR>
+<BR>
+
+<FONT color="red"><H2>注意！</H2>
+英語版のページを泣きながら作りました。(T_T)<BR>
+もともと私は英語が苦手なので、おかしい箇所が絶対にあります。
+</font>
+
+
+<H2>その他の似たソフトウェア</H2>
+<LI><A HREF="http://users.rcn.com/danadler/jacob/">JACOB</A><BR>
+<LI><A HREF="http://www.infozoom.de/NS/jacozoom.html">jacoZoom</A><BR>
+<LI><A HREF="http://www.alphaWorks.ibm.com/tech/bridge2java">Bridge2Java</A><BR>
+<LI><A HREF="http://www.gensym.com/java">BeanXporter</A><BR>
+<LI><A HREF="http://www.weblogic.com/docs45/classdocs/API_com.html">Weblogic COM</A><BR>
+<LI><A HREF="http://www.linar.com/">J-Integra</A>
+<LI><A HREF="http://www.nevaobject.com/index.htm">Java2COM</A>
+<BR>
+
+<H2>変更履歴</H2>
+2001/10/08 Ver2.23<BR>
+<LI>IDispatchをIUnknownと間違えて判断されていたバグ、および、VT_NULLをVT_EMPTYにしていたバグを修正。
+ExcelのCopyメソッド実装時に発生。<BR>
+<BR>
+2001/08/29<BR>
+<LI>FAQを追加<BR>
+<BR>
+
+2001/04/27<BR>
+<LI>その他のパッケージを追加↑<BR>
+<BR>
+
+2001/04/25<BR>
+<LI>技術情報を追加。(<A HREF="./guide.html">guide.html</A>)<BR>
+<BR>
+
+2001/04/05 Ver2.22<BR>
+<LI>ExcelFontをサポート
+<LI>VBのCOMのサンプルを追加（復活) demo/vbcom/<BR>
+<BR>
+
+2000/11/27 Ver2.21<BR>
+<LI>IPersistを追加。これをサポートしているＣＯＭのProgID/CLSIDが取得可能に。
+<LI>IUnknown#queryInterface()のＪａｖａ側クラスの引数をStringからClassにした。
+<LI>IUnknown#queryInterface()で、サポートしていないインターフェースは確実にnullを返すようにした。<BR>
+<BR>
+
+2000/10/16  Ver2.20<BR>
+<LI>サポートしている型を増やした。(<A HREF="guide.html">guide.html</A>参照)
+<LI>引数を間違えたとき、エラーとして検出するようにした。
+<LI>引数の並びを逆にしなければならなかった不具合を修正。
+<LI>参照渡しのときに値が反映されない不具合を修正。
+<LI>String[]の変換が失敗していた不具合を修正。
+<LI>ＶＢで作られたＣＯＭを呼ぶサンプルを追加。<BR>
+<BR>
+2000/09/04<BR>
+<LI>想定事例３：ＥｘｃｅｌからＸＭＬを作成
+<LI>サンプルの英語化
+<LI>Cautionを校正。Takahiroさんありがとうございます。感謝感激です。
+<BR>
+2000/08/29<BR>
+<LI>呼び出し方法をVC++のCOleDispatchDriver::InvokeHelperV()に合わせる。
+<LI>対応するVARIANT型を追加。VT_UI1,VT_BYREF等
+<LI>開発中のITypeInfo,ITypeLib,Comを安定版に昇格。
+<LI>インストール方法を提示
+<LI>英語用ページを開設
+<BR>
+2000/08/06<BR>
+<LI>想定事例１。Ｅｘｃｅｌによる見積書作成のサンプルを作成。→jcom201.lzh
+<LI>#01 ExcelWorkbooks.Open()メソッドの戻り値の間違いを修正。→同上
+<LI>ライセンス形態について悩む・・・(@_@)?
+<BR>
+<BR>
+
+<HR><!-- ================================================================================ -->
+<a href="../index.html">戻る</a><br>
+</body>
+</html>

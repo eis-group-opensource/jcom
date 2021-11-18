@@ -1,0 +1,208 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD>
+<META http-equiv=Content-Type content="text/html; charset=windows-1252"><!--
+	Copyright(C) Yoshinori Watanabe 1999-2001. All Rights Reserved.
+-->
+<BODY bgColor=white>
+<H2>Setup</H2>
+Extract "jcom222.zip".
+ And copy jcom.jar and jcom.dll to the following directories
+ <BR>
+jcom.dll  -&gt; (java.home)/bin/<BR>
+jcom.jar  -&gt; (java.home)/lib/ext/<BR>
+
+make sure the JAVA_HOME evironmental variable has been set, ie. <br>
+(java.home) == java.lang.System.getProperty("java.home");
+
+
+<HR>
+<!-- ====================================================== -->
+<H2>Development Information</H2>
+<H3>Supported types</H3>
+
+Recomended types are VT_I4, VT_R8, VT_BOOL, VT_BSTR, and VT_DISPATCH. 
+
+<TABLE cellSpacing=0 cellPadding=3 width="100%" border=1>
+  <TBODY>
+  <TR class=TableHeadingColor bgColor=#ccccff>
+    <TD colSpan=2><FONT size=+2><B>Supported types</B></FONT></TD></TR>
+  <TR class=TableRowColor bgColor=white>
+    <TD width="15%"><B>VT_UI1</B></TD>
+    <TD>java.lang.Byte</TD></TR>
+  <TR class=TableRowColor bgColor=white>
+    <TD width="15%"><B>VT_I2</B></TD>
+    <TD>java.lang.Short</TD></TR>
+  <TR class=TableRowColor bgColor=white>
+    <TD width="15%"><B>VT_I4</B></TD>
+    <TD>java.lang.Integer</TD></TR>
+  <TR class=TableRowColor bgColor=white>
+    <TD width="15%"><B>VT_R4</B></TD>
+    <TD>java.lang.Float</TD></TR>
+  <TR class=TableRowColor bgColor=white>
+    <TD width="15%"><B>VT_R8</B></TD>
+    <TD>java.lang.Double</TD></TR>
+  <TR class=TableRowColor bgColor=white>
+    <TD width="15%"><B>VT_BOOL</B></TD>
+    <TD>java.lang.Boolean</TD></TR>
+  <TR class=TableRowColor bgColor=white>
+    <TD width="15%"><B>VT_BSTR</B></TD>
+    <TD>java.lang.String</TD></TR>
+  <TR class=TableRowColor bgColor=white>
+    <TD width="15%"><B>VT_DATE</B></TD>
+    <TD>java.util.Date</TD></TR>
+  <TR class=TableRowColor bgColor=white>
+    <TD width="15%"><B>VT_CY</B></TD>
+    <TD>jp.ne.so_net.ga2.no_ji.jcom.VariantCurrency</TD></TR>
+  <TR class=TableRowColor bgColor=white>
+    <TD width="15%"><B>VT_ERROR</B></TD>
+    <TD>jp.ne.so_net.ga2.no_ji.jcom.VariantError</TD></TR>
+  <TR class=TableRowColor bgColor=white>
+    <TD width="15%"><B>VT_UNKNOWN</B></TD>
+    <TD>jp.ne.so_net.ga2.no_ji.jcom.IUnknown</TD></TR>
+  <TR class=TableRowColor bgColor=white>
+    <TD width="15%"><B>VT_DISPATCH</B></TD>
+    <TD>jp.ne.so_net.ga2.no_ji.jcom.IDispatch</TD></TR>
+  <TR class=TableRowColor bgColor=white>
+    <TD width="15%"><B>VT_UI1|VT_BYREF</B></TD>
+    <TD>byte[]</TD></TR>
+  <TR class=TableRowColor bgColor=white>
+    <TD width="15%"><B>VT_I2|VT_BYREF</B></TD>
+    <TD>short[]</TD></TR>
+  <TR class=TableRowColor bgColor=white>
+    <TD width="15%"><B>VT_I4|VT_BYREF</B></TD>
+    <TD>int[]</TD></TR>
+  <TR class=TableRowColor bgColor=white>
+    <TD width="15%"><B>VT_R4|VT_BYREF</B></TD>
+    <TD>float[]</TD></TR>
+  <TR class=TableRowColor bgColor=white>
+    <TD width="15%"><B>VT_R8|VT_BYREF</B></TD>
+    <TD>double[]</TD></TR>
+  <TR class=TableRowColor bgColor=white>
+    <TD width="15%"><B>VT_BOOL|VT_BYREF</B></TD>
+    <TD>boolean[]</TD></TR>
+  <TR class=TableRowColor bgColor=white>
+    <TD width="15%"><B>VT_BSTR|VT_BYREF</B></TD>
+    <TD>java.lang.String[]</TD></TR></TBODY></TABLE>
+<HR>
+<!-- ====================================================== -->
+<H3>Type table Visual-Basic &amp; Java.</H3>
+<TABLE cellSpacing=0 cellPadding=3 width="100%" border=1>
+  <TBODY>
+  <TR class=TableHeadingColor bgColor=#ccccff>
+    <TD><FONT size=+2><B>COM</B></FONT></TD>
+    <TD><FONT size=+2><B>Java</B></FONT></TD>
+    <TD><FONT size=+2><B>Visual-BASIC</B></FONT></TD></TR>
+  <TR class=TableRowColor bgColor=white>
+    <TD width="15%"><B>VT_UI1</B></TD>
+    <TD>java.lang.Byte</TD>
+    <TD>ByVal As Byte</TD></TR>
+  <TR class=TableRowColor bgColor=white>
+    <TD width="15%"><B>VT_I2</B></TD>
+    <TD>java.lang.Short</TD>
+    <TD>ByVal As Integer</TD></TR>
+  <TR class=TableRowColor bgColor=white>
+    <TD width="15%"><B>VT_I4</B></TD>
+    <TD>java.lang.Integer</TD>
+    <TD>ByVal As Long</TD></TR>
+  <TR class=TableRowColor bgColor=white>
+    <TD width="15%"><B>VT_R4</B></TD>
+    <TD>java.lang.Float</TD>
+    <TD>ByVal As Single</TD></TR>
+  <TR class=TableRowColor bgColor=white>
+    <TD width="15%"><B>VT_R8</B></TD>
+    <TD>java.lang.Double</TD>
+    <TD>ByVal As Double</TD></TR>
+  <TR class=TableRowColor bgColor=white>
+    <TD width="15%"><B>VT_BOOL</B></TD>
+    <TD>java.lang.Boolean</TD>
+    <TD>ByVal As Boolean</TD></TR>
+  <TR class=TableRowColor bgColor=white>
+    <TD width="15%"><B>VT_BSTR</B></TD>
+    <TD>java.lang.String</TD>
+    <TD>ByVal As String</TD></TR>
+  <TR class=TableRowColor bgColor=white>
+    <TD width="15%"><B>VT_DATE</B></TD>
+    <TD>java.util.Date</TD>
+    <TD>ByVal As Date</TD></TR>
+  <TR class=TableRowColor bgColor=white>
+    <TD width="15%"><B>VT_CY</B></TD>
+    <TD>jp.ne.so_net.ga2.no_ji.jcom.VariantCurrency</TD>
+    <TD>ByVal As Currency</TD></TR>
+  <TR class=TableRowColor bgColor=white>
+    <TD width="15%"><B>VT_ERROR</B></TD>
+    <TD>jp.ne.so_net.ga2.no_ji.jcom.VariantError</TD>
+    <TD>?</TD></TR>
+  <TR class=TableRowColor bgColor=white>
+    <TD width="15%"><B>VT_UNKNOWN</B></TD>
+    <TD>jp.ne.so_net.ga2.no_ji.jcom.IUnknown</TD>
+    <TD>?</TD></TR>
+  <TR class=TableRowColor bgColor=white>
+    <TD width="15%"><B>VT_DISPATCH</B></TD>
+    <TD>jp.ne.so_net.ga2.no_ji.jcom.IDispatch</TD>
+    <TD>?</TD></TR>
+  <TR class=TableRowColor bgColor=white>
+    <TD width="15%"><B>VT_UI1|VT_BYREF</B></TD>
+    <TD>byte[]</TD>
+    <TD>ByRef As Byte</TD></TR>
+  <TR class=TableRowColor bgColor=white>
+    <TD width="15%"><B>VT_I2|VT_BYREF</B></TD>
+    <TD>short[]</TD>
+    <TD>ByRef As Integer</TD></TR>
+  <TR class=TableRowColor bgColor=white>
+    <TD width="15%"><B>VT_I4|VT_BYREF</B></TD>
+    <TD>int[]</TD>
+    <TD>ByRef As Long</TD></TR>
+  <TR class=TableRowColor bgColor=white>
+    <TD width="15%"><B>VT_R4|VT_BYREF</B></TD>
+    <TD>float[]</TD>
+    <TD>ByRef As Single</TD></TR>
+  <TR class=TableRowColor bgColor=white>
+    <TD width="15%"><B>VT_R8|VT_BYREF</B></TD>
+    <TD>double[]</TD>
+    <TD>ByRef As Double</TD></TR>
+  <TR class=TableRowColor bgColor=white>
+    <TD width="15%"><B>VT_BOOL|VT_BYREF</B></TD>
+    <TD>boolean[]</TD>
+    <TD>ByRef As Boolean</TD></TR>
+  <TR class=TableRowColor bgColor=white>
+    <TD width="15%"><B>VT_BSTR|VT_BYREF</B></TD>
+    <TD>java.lang.String[]</TD>
+    <TD>ByRef As String</TD></TR></TBODY></TABLE>
+sample.<BR><BR>
+Visual-BASIC <PRE>    Function foo(ByVal no As Long, ByRef str As String) As Long
+      
+    End Function</PRE>Java 
+    <PRE>    ReleaseManager rm = new ReleaseManager();
+    try {
+        IDispatch app = new IDispatch(rm, "Project1.Class1");
+        Integer no = new Integer(4);
+        String[] str = new String[1];
+        str[0] = "a String";
+        Object[] param = new Object[] { no, str };
+        Integer retcode = (Integer)app.method( "foo", param );
+    }
+    catch ( Exception e ) {
+        e.printStackTrace();
+    }
+    finally 
+    {
+        rm.release();
+    }</PRE>
+<HR>
+<!-- ====================================================== -->
+<H3>About the Date data type</H3>
+The Date definition of Java is as follows.<BR>
+
+<CODE>number of milliseconds since January 1, 1970, 00:00:00 GMT</CODE>
+<BR>The COM Date data type diffrent in that it is a double, ie. 1 day = 1.0, also there is no concept of 'Locale' in the COM Date dat type. The base Date data types follow,  <BR>
+
+1899-12-30 AM0:00 0.00<BR>1900-01-01 AM0:00 2.00<BR><BR>
+These are the diffirent base Date data types. 
+
+Another diffrence is that Date in Java supports 
+internationarization. <BR> When JCom converts COM's Date data type into a Java Date data type it takes into consideration the local time zone. 
+<HR>
+<!-- ====================================================== -->
+JCom on Unix ???<BR>
+<IMG src="./onUnix.png">
+</BODY></HTML>

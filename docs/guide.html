@@ -1,0 +1,259 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+<!--
+	Copyright(C) Yoshinori Watanabe 1999-2000. All Rights Reserved.
+-->
+
+</head>
+<body bgcolor="white">
+
+<H2>インストール方法</H2>
+jcom2xx.zipを解凍して下さい。(xxはバージョンにより異なります)<BR>
+JComにはjcom.jarとjcom.dllの２つのファイルが必要です。<BR>
+jcom.jar は (java-home)/lib/ext/ 、およびCLASSPATHで設定したディレクトリの下のlib/ext/に入れて下さい。<BR>
+jcom.dll は (java-home)/bin/ に入れて下さい。<BR>
+<BR>
+(java-home)は、java.lang.System.getProperty("java.home"); で
+知ることが出来ます。
+<HR><!-- ====================================================== -->
+<H2>技術情報</H2>
+<H3>サポートしているVARIANT型</H3>
+サポートしているVARIANT型を以下に示します。<BR>
+推奨する型はVT_I4, VT_R8, VT_BOOL, VT_BSTR, VT_DISPATCH です。
+新規にＣＯＭを作成する場合は、他の型よりこれらの型を使うことを勧めます。
+<TABLE BORDER="1" CELLPADDING="3" CELLSPACING="0" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TD COLSPAN=2><FONT SIZE="+2">
+<B>サポートしているVARIANT型</B></FONT></TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B>VT_UI1</B></TD>
+<TD>java.lang.Byte</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B>VT_I2</B></TD>
+<TD>java.lang.Short</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B>VT_I4</B></TD>
+<TD>java.lang.Integer</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B>VT_R4</B></TD>
+<TD>java.lang.Float</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B>VT_R8</B></TD>
+<TD>java.lang.Double</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B>VT_BOOL</B></TD>
+<TD>java.lang.Boolean</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B>VT_BSTR</B></TD>
+<TD>java.lang.String</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B>VT_DATE</B></TD>
+<TD>java.util.Date</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B>VT_CY</B></TD>
+<TD>jp.ne.so_net.ga2.no_ji.jcom.VariantCurrency</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B>VT_ERROR</B></TD>
+<TD>jp.ne.so_net.ga2.no_ji.jcom.VariantError</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B>VT_UNKNOWN</B></TD>
+<TD>jp.ne.so_net.ga2.no_ji.jcom.IUnknown</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B>VT_DISPATCH</B></TD>
+<TD>jp.ne.so_net.ga2.no_ji.jcom.IDispatch</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B>VT_UI1|VT_BYREF</B></TD>
+<TD>byte[]</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B>VT_I2|VT_BYREF</B></TD>
+<TD>short[]</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B>VT_I4|VT_BYREF</B></TD>
+<TD>int[]</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B>VT_R4|VT_BYREF</B></TD>
+<TD>float[]</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B>VT_R8|VT_BYREF</B></TD>
+<TD>double[]</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B>VT_BOOL|VT_BYREF</B></TD>
+<TD>boolean[]</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B>VT_BSTR|VT_BYREF</B></TD>
+<TD>java.lang.String[]</TD>
+</TR>
+</TABLE>
+<HR><!-- ====================================================== -->
+
+<H3>Visual-BasicとJavaとの対応表</H3>
+
+Visual-BasicとJavaとの変数の型の対応を示します。
+以下の型についてのみ利用することができます。
+
+<TABLE BORDER="1" CELLPADDING="3" CELLSPACING="0" WIDTH="100%">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TD><FONT SIZE="+2"><B>COM</B></FONT></TD>
+<TD><FONT SIZE="+2"><B>Java</B></FONT></TD>
+<TD><FONT SIZE="+2"><B>Visual-BASIC</B></FONT></TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B>VT_UI1</B></TD>
+<TD>java.lang.Byte</TD>
+<TD>ByVal As Byte</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B>VT_I2</B></TD>
+<TD>java.lang.Short</TD>
+<TD>ByVal As Integer</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B>VT_I4</B></TD>
+<TD>java.lang.Integer</TD>
+<TD>ByVal As Long</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B>VT_R4</B></TD>
+<TD>java.lang.Float</TD>
+<TD>ByVal As Single</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B>VT_R8</B></TD>
+<TD>java.lang.Double</TD>
+<TD>ByVal As Double</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B>VT_BOOL</B></TD>
+<TD>java.lang.Boolean</TD>
+<TD>ByVal As Boolean</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B>VT_BSTR</B></TD>
+<TD>java.lang.String</TD>
+<TD>ByVal As String</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B>VT_DATE</B></TD>
+<TD>java.util.Date</TD>
+<TD>ByVal As Date</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B>VT_CY</B></TD>
+<TD>jp.ne.so_net.ga2.no_ji.jcom.VariantCurrency</TD>
+<TD>ByVal As Currency</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B>VT_ERROR</B></TD>
+<TD>jp.ne.so_net.ga2.no_ji.jcom.VariantError</TD>
+<TD>?</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B>VT_UNKNOWN</B></TD>
+<TD>jp.ne.so_net.ga2.no_ji.jcom.IUnknown</TD>
+<TD>?</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B>VT_DISPATCH</B></TD>
+<TD>jp.ne.so_net.ga2.no_ji.jcom.IDispatch</TD>
+<TD>?</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B>VT_UI1|VT_BYREF</B></TD>
+<TD>byte[]</TD>
+<TD>ByRef As Byte</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B>VT_I2|VT_BYREF</B></TD>
+<TD>short[]</TD>
+<TD>ByRef As Integer</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B>VT_I4|VT_BYREF</B></TD>
+<TD>int[]</TD>
+<TD>ByRef As Long</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B>VT_R4|VT_BYREF</B></TD>
+<TD>float[]</TD>
+<TD>ByRef As Single</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B>VT_R8|VT_BYREF</B></TD>
+<TD>double[]</TD>
+<TD>ByRef As Double</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B>VT_BOOL|VT_BYREF</B></TD>
+<TD>boolean[]</TD>
+<TD>ByRef As Boolean</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B>VT_BSTR|VT_BYREF</B></TD>
+<TD>java.lang.String[]</TD>
+<TD>ByRef As String</TD>
+</TR>
+</TABLE>
+サンプル。<BR>
+<BR>
+Visual-BASIC側のソース
+<PRE>    Function foo(ByVal no As Long, ByRef str As String) As Long
+        ...
+    End Function</PRE>
+Java側のソース
+<PRE>    ReleaseManager rm = new ReleaseManager();
+    try {
+        IDispatch app = new IDispatch(rm, "Project1.Class1");
+        Integer no = new Integer(4);
+        String[] str = new String[1];
+        str[0] = "文字列";
+        Object[] param = new Object[] { no, str };
+        Integer retcode = (Integer)app.method( "foo", param );
+    }
+    catch ( Exception e ) {
+        e.printStackTrace();
+    }
+    finally {
+        rm.release();
+    }</PRE>
+<HR><!-- ====================================================== -->
+
+<H3>日付型について</H3>
+JavaのDateの定義は次のとおりです。<BR>
+<CODE>number of milliseconds since January 1, 1970, 00:00:00 GMT</CODE><BR>
+一方、COMのDATEはdoubleで管理されており、1日=1.0です。基準となる日時は
+次のとおりで、ロケールの概念がありません。<BR>
+1899 年 12 月 30 日午前零時	0.00<BR>
+1900 年 1 月 1 日午前零時	2.00<BR>
+基準となる日時も違いますし、型や精度も違います。
+すなわちJavaのDateは国際化に対応していますが、
+ＣＯＭのDATEは現地時間のみしかないので、ロケール情報がないと、
+その時間が一体どこの時間かがわかりません。
+JComでは、COMのDATEを現地時間とみなして変換しています。
+<HR><!-- ====================================================== -->
+Unix/Linux から COM を実行できるか？<BR>
+Unix/Linuxの上ではCOMは動かないので、下記のような構成にすれば動かすことができます。
+しかし、ドライバについても作成しなければならないので、面倒です。
+<IMG SRC="onUnix.png">
+
+</body>
+</html>

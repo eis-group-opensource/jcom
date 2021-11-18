@@ -1,0 +1,14 @@
+samples/	基本的なＪＣｏｍの使い方のサンプルです。
+	testExcel.java              Excel用ラッパを使ったサンプル
+	testExcelSvr.java           testExcelをサーバ型にしたサンプル
+	testJCom.java               JComを直接使ったサンプル
+	testJCom1.java		    JComを直接使った、もっとも簡単なサンプル
+	testJComSvr.java            testJComをサーバ型にしたサンプル
+	testEnum.java               IEnumVARIANTインターフェースを使ったサンプル
+	testNoReleaseManager.java   ReleaseManagerを使わないサンプル
+
+estimate/	想定事例:Excelを使った見積書の自動生成
+
+outxml/		想定事例:ExcelからXMLを生成
+
+vbcom/		VBで作成したＣＯＭを利用する。

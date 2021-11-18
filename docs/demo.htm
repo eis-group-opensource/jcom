@@ -1,0 +1,151 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META NAME="KEYWORDS" CONTENT="Java,Com,Bridge,GNU,LGPL,JNI,Microsoft,component,object,model,Excel,Windows,XML">
+<META NAME="description" CONTENT="This is a software project web page for Java-COM Bridge library called JCom. This software enable Java to access COM Objects such as Excel or Word.">
+<title>プログラマー's研究所/JCom(Java-COMブリッジ)</title>
+</head>
+
+<body text="#000000" bgcolor="#FFFFFF">
+
+<center><h2><font color="brown">JCom(Java-COMブリッジ)</font></h2></center>
+<center><IMG SRC="./jcom.jpg"></center>
+<BR>
+<hr><!------------------------------------------------------------------->
+<H3>サンプル１：基本的な使い方</H3>
+(jcom)/demo/samples/testExcel.java<BR>
+<PRE>
+import <font color="blue"><B>jp.ne.so_net.ga2.no_ji.jcom.excel8.*</B></font>;
+import <font color="blue"><B>jp.ne.so_net.ga2.no_ji.jcom.*</B></font>;
+import java.io.File;
+import java.util.Date;
+
+/* Excel用ラッパを使った、JComのサンプルプログラム */
+class testExcel {
+    public static void main(String[] args) throws Exception {
+        <font color="blue"><B>ReleaseManager</B></font> rm = new <font color="blue"><B>ReleaseManager();</B></font>
+        try {
+            System.out.println("EXCELを起動中...");
+            // すでに立ち上がっていると、新しいウィンドウで開く。
+            <font color="blue"><B>ExcelApplication</B></font> excel = new <font color="blue"><B>ExcelApplication</B></font>(rm);
+            excel.Visible(true);
+            // 色んな情報を表示
+            System.out.println("Version="+excel.<font color="blue"><B>Version()</B></font>);
+            System.out.println("UserName="+excel.<font color="blue"><B>UserName()</B></font>);
+            System.out.println("Caption="+excel.<font color="blue"><B>Caption()</B></font>);
+            System.out.println("Value="+excel.<font color="blue"><B>Value()</B></font>);
+
+            <font color="blue"><B>ExcelWorkbooks</B></font> xlBooks = excel.<font color="blue"><B>Workbooks()</B></font>;
+            <font color="blue"><B>ExcelWorkbook</B></font> xlBook = xlBooks.<font color="blue"><B>Add</B></font>();   // 新しいブックを作成
+            
+            // すべてのファイルを列挙してみる
+            System.out.println("現在のディレクトリのファイルをセルに設定");
+            <font color="blue"><B>ExcelWorksheets</B></font> xlSheets = xlBook.<font color="blue"><B>Worksheets</B></font>();
+            <font color="blue"><B>ExcelWorksheet</B></font> xlSheet = xlSheets.<font color="blue"><B>Item</B></font>(1);
+            <font color="blue"><B>ExcelRange</B></font> xlRange = xlSheet.<font color="blue"><B>Cells</B></font>();
+
+            xlRange.<font color="blue"><B>Item(1,1).Value</B></font>("ファイル名" );
+            xlRange.<font color="blue"><B>Item(2,1).Value</B></font>("サイズ" );
+            xlRange.<font color="blue"><B>Item(3,1).Value</B></font>("最終更新日時");
+            xlRange.<font color="blue"><B>Item(4,1).Value</B></font>("ディレクトリ");
+            xlRange.<font color="blue"><B>Item(5,1).Value</B></font>("ファイル");
+            xlRange.<font color="blue"><B>Item(6,1).Value</B></font>("読み込み可");
+            xlRange.<font color="blue"><B>Item(7,1).Value</B></font>("書き込み可");
+
+            File path = new File("./");
+            String[] filenames = path.list();
+            for(int i=0; i&lt;filenames.length; i++) {
+                File file = new File(filenames[i]);
+                System.out.println(file);
+                xlRange.<font color="blue"><B>Item(1,i+2).Value</B></font>( file.getName() );                // ファイル名パス無し
+                xlRange.<font color="blue"><B>Item(2,i+2).Value</B></font>( (int)file.length() );            // ファイルサイズ
+                xlRange.<font color="blue"><B>Item(3,i+2).Value</B></font>( new Date(file.lastModified()) ); // 最終更新日時
+                xlRange.<font color="blue"><B>Item(4,i+2).Value</B></font>( file.isDirectory()?"Yes":"No" ); // ディレクトリか？
+                xlRange.<font color="blue"><B>Item(5,i+2).Value</B></font>( file.isFile()?"Yes":"No" );      // ファイルか？
+                xlRange.<font color="blue"><B>Item(6,i+2).Value</B></font>( file.canRead()?"Yes":"No" );     // 読み取り可か？
+                xlRange.<font color="blue"><B>Item(7,i+2).Value</B></font>( file.canWrite()?"Yes":"No" );    // 書き込み可か？
+            }
+            String expression = "=Sum(B2:B"+(filenames.length+1)+")";
+            System.out.println("数式を埋め込み、ファイルサイズの合計を求める "+expression);
+            xlRange.<font color="blue"><B>Item(1,filenames.length+2).Value</B></font>("合計");
+            xlRange.<font color="blue"><B>Item(2,filenames.length+2).Formula</B></font>(expression);
+            xlRange.<font color="blue"><B>Columns().AutoFit</B></font>();    // 横幅をフィットさせる
+
+            // プリンタに出力する場合はコメントをはずしてください。
+            // デフォルトのプリンタに出力されます。
+//          System.out.println("プリンタに印刷します。");
+//          xlSheet.<font color="blue"><B>PrintOut</B></font>();
+
+            // ファイルに保存する場合はコメントを外してください。
+            // ディレクトリを指定しない場合は、(My Documents)に保存されます。
+//          System.out.println("ファイルに保存します。(My Documents)\\testExcel.xls");
+//          xlBook.<font color="blue"><B>SaveAs</B></font>("testExcel.xls");
+
+            xlBook.<font color="blue"><B>Close</B></font>(false,null,false);
+            excel.<font color="blue"><B>Quit</B></font>();
+
+            System.out.println("ご静聴、ありがとうございました。");
+        }
+        catch(Exception e) { e.printStackTrace(); }
+        finally { rm.<font color="blue"><B>release</B></font>(); }
+    }
+}
+</PRE>
+<BR>
+
+<hr><!------------------------------------------------------------------->
+<H3>サンプル２：Excelを使って見積書を作成</H3>
+(jcom)/demo/estimate/<BR>
+<BR>
+ある見積書を自動的に作るシステムがあると仮定します。
+システム自体はＪａｖａで組んでいますが、見積書の部分だけは
+Ｅｘｃｅｌで作る必要があるとします。Ｅｘｃｅｌの方が品質の高い
+シートが作れますし、今回はＥｘｃｅｌの印刷機能も利用します。<BR>
+<BR>
+まず、estimate.xlsを見てください。
+これは見積書の原紙にあたります。
+必要な数式も埋め込まれていますし、印刷範囲も設定済みです。
+
+このファイルをいったん別の名前でコピーし、それに対して必要な
+箇所に値を入れていきます。
+そして印刷し、保存して終了します。<BR>
+<BR>
+コピーされたファイルは、すべて残しておくものとします。
+したがってファイル名はユニークな値にします。
+これは、見積書Noと一致させる方がよいでしょう。 
+それらは見積有効期間が過ぎるまで保持します。
+ただし、このサンプルではそこまで実装していません。<br>
+<BR>
+サンプルでは実際には印刷しませんが、以下の行をコメントから外せば印刷を行います。
+<PRE>    // est.print_enable = true;</PRE>
+実際の運用となると、プリンタの代わりにＦＡＸやメールに送ることも
+考えられますね。<BR>
+このサンプルはJCom Ver2.01以降のファイルに含まれています。
+Excel97,2000で動作します。
+<BR>
+<hr><!------------------------------------------------------------------->
+<H3>サンプル３：ExcelファイルからＸＭＬを作成</H3>
+(jcom)/demo/outxml/<BR>
+サンプル２で作成されたいくつかの見積書から、必要なデータを
+抽出してＸＭＬに出力します。
+まず、カレントディレクトリにあるExcelファイルを開き、
+想定事例とは逆の方法で、該当セルからデータを取得します。
+あとは、PrintWriterを使ってXMLファイルを作ります。<BR>
+<BR>
+このサンプルではXMLの出力のみなので、XMLパーサは必要
+ありません。 しかし、XMLパーサがあれば、XML→EXCELの
+処理も可能でしょう。<BR>
+<BR>
+●実行方法<BR>
+あらかじめ、ＪＣｏｍが正しくインストールしているものとします。<BR>
+<UL><PRE>
+javac OutXML.java        //コンパイル方法
+java OutXML              // 実行方法                
+</PRE></UL>
+<hr><!------------------------------------------------------------------->
+<H3>サンプル４：VBで作成したＣＯＭを利用する。</H3>
+(jcom)/demo/vbcom/<BR>
+<hr><!------------------------------------------------------------------->
+<a href="../index.htm">戻る</a><br>
+</body>
+</html>

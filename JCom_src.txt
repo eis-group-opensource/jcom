@@ -1,0 +1,283 @@
+ＪＣｏｍソースファイル
+
+                          渡辺義則(YOSHINORI Watanabe) 2000-06-26
+
+●開発環境
+Windows95OSR2(or WindowsNT WorkStationSP4)
+Visual-C++ Version6.0（以下ＶＣ）
+JDK1.3.0(or JDK1.1.8)
+
+作者のディレクトリ構成
+(jcom)/comdesc/       C++で作られたＣＯＭ調査用プログラム
+(jcom)/jcom210src/    バージョン単位のホームディレクトリ
+(jcom)/jcom210src/jp  Javaソース
+(jcom)/jcom210src/cpp JNIソース
+(jcom)/jcom210src/demo デモプログラム
+(jcom)/jcom210src/docs ドキュメント
+(jcom)/jcom210src/build_tmp  ビルド出力ファイル
+
+
+
+
+●ビルド方法
+ＤＯＳプロンプトからコンパイル、リンクします。
+あらかじめ、ＪａｖａとＶＣの設定がしてあるものとします。
+ここでは、D:\java\jdk1.3\include にＪＮＩのためのファイルがある
+ものとします。ＶＣも統合環境は使わないので、ＤＯＳからcl.exeや
+link.exeが使える必要があります。環境変数のINCLUDE,LIB,PATH等の
+設定をあらかじめ行って下さい。作者の環境は以下の通りです。
+合わせる必要はありませんが、困ったときは参考にして下さい。
+-----------------------------------------------------------
+TMP=C:\WINDOWS\TEMP
+TEMP=C:\WINDOWS\TEMP
+PROMPT=$p$g
+winbootdir=C:\WINDOWS
+COMSPEC=C:\WINDOWS\COMMAND.COM
+windir=C:\WINDOWS
+BLASTER=A220 I5 D1 T4
+LIB=D:\VisualStudio6\vc98\lib;D:\VisualStudio6\vc98\mfc\lib
+PATH=.;C:\WINDOWS\SYSTEM;C:\WINDOWS;C:\WINDOWS\COMMAND;D:\DOSTOOLS;D:\VISUAL~1\C
+OMMON\MSDEV98\BIN;D:\VISUAL~1\VC98\BIN;D:\VISUAL~1\COMMON\TOOLS\WIN95;D:\VISUAL~
+1\COMMON\TOOLS;D:\JAVA\JDK1.3\BIN;
+INCLUDE=D:\VisualStudio6\vc98\Include;D:\VisualStudio6\vc98\mfc\Include;D:\Visua
+lStudio6\vc98\atl\Include;D:\java\jdk1.3\include;D:\java\jdk1.3\include\Win32
+CLASSPATH=.;D:\java\jdk1.3\lib;D:\java\jdk1.3\jre\lib;D:\java\jdk1.3\lib\ext\jco
+m.jar
+CMDLINE=java EstimateMaker
+-----------------------------------------------------------
+
+ビルドには以下の２つの方法が使えます。どちらでも構いません。
+
+・makeを使う場合。
+ＶＣのnmake.exe用のmakefileを作っています。
+以下の４つの方法があります。
+> nmake.exe           jcom.jar および jcom.dll を生成します。
+> nmake.exe clean     作業用ディレクトリ(build_tmp)を削除します。
+> nmake.exe javadoc   ドキュメントを生成します。
+> nmake.exe javah     JNIヘッダファイルを生成します。
+
+・バッチファイルを使う場合。
+build.bat を実行すると、java、およびＣ＋＋のソースをコンパイルし、
+jcom.jar および jcom.dll を生成します。
+builddoc.bat を実行すると、jcom200src/api 以下にＨＴＭＬによる
+ドキュメントを生成します。
+
+
+●ファイルの内容
+
+jp/ne/so_net/ga2/no_ji/jcom ディレクトリ
+
+GUID.java
+ＣＯＭのIID（インターフェースＩＤ）を扱うためのクラスです。
+
+IUnknown.java
+ＣＯＭのIUnknownインターフェースを扱うためのクラスです。
+
+IDispatch.java
+ＣＯＭのIDispatchインターフェースを扱うためのクラスです。
+Version1.00のJCom.javaにあたります。
+
+IEnumVARIANT.java
+ＣＯＭのIEnumVARIANTインターフェースを扱うためのクラスです。
+
+ReleaseManager.java
+ＣＯＭの参照カウンタを管理するクラスです。
+
+VariantCurrency.java
+VARIANTの通貨型をあらわすクラスです。VARIANTの他の型は
+Ｊａｖａに対応するクラスがあるのですが、通貨型はＪａｖａには
+ありません。正確には、Ｊａｖａでは通貨は double として扱って
+おり、VARIANTの数値(VT_R8)と区別がつきません。そのため、
+このクラスを用意しました。
+
+JComException.java
+ＪＣｏｍで発生する例外を扱うクラスです。
+
+cpp ディレクトリ
+
+IUnknown.cpp
+ＣＯＭのIUnknownインターフェースとなるＣ＋＋側のソースファイルです。
+
+IDispatch.cpp
+ＣＯＭのIDispatchインターフェースとなるＣ＋＋側のソースファイルです。
+ＪａｖａのオブジェクトとVARIANTの変換を行っている関数も含まれます。
+
+IEnumVARIANT.cpp
+ＣＯＭのIEnumVARIANTインターフェースとなるＣ＋＋側のソースファイルです。
+
+callCom.cpp
+ＣＯＭを呼び出すための汎用ライブラリです。これは JCom 以外
+でも使えるように汎用的に作られたモノです。
+
+JString.cpp
+ＪａｖａのStringと、VARIANT型のBSTRと、Shift-JISの相互変換を
+行うためのライブラリです。これも汎用的に作られたもので、
+ＪＮＩをあつかう場合には有用でしょう。
+
+JComConst.h
+定数を記述したヘッダファイルです。
+
+*.h
+javah.exeにより自動生成されたヘッダファイルです。
+
+
+●ＣＯＭの参照カウンタとガーベージコレクションについて
+
+ＣＯＭとＪａｖａではまったく異なるメモリ管理を行っています。
+ＣＯＭは「参照カウンタ」による管理、Ｊａｖａは「ガーベージコレクション」
+により管理しています。ところが、この２つはなかなか相容れない
+アーキテクチャなのです。
+
+ＣＯＭを生成したとき、解放はどうすればよいでしょう。
+ＪＣｏｍでrelease()メソッドを用意し、明示的に呼ぶようにする方法が
+考えられます。 生成したオブジェクトは必ずrelease()を呼ぶのです。
+これは確実な方法ですが、プログラムは相当複雑になってしまいます。
+以下のように手軽にソースを書くことが不可能になります。
+	xlRange.Item(1,1).Value("ファイル名" );
+これは以下の様に書く必要があります。
+	ExcelRange r = xlRange.Item(1,1);
+	r.Value("ファイル名");
+	r.release();
+また、release()がどこで必要になるかを理解していなければならないので、
+ＣＯＭに関する知識が必要になってきます。 
+
+次に考えるのは、IDispatchクラスのfinalize()でrelease()を呼べば
+よいことでしょう。 この方法はうまく行くようにおもえますが、実際には
+以下の２つの理由によりうまく行きません。
+まず、Ｊａｖａはfinalize()が常に呼ばれることを保証していません。
+ドキュメントのObject.release()を見てください。
+これは簡単なプログラムを作って確認できます。
+System.runFinalizersOnExit(true); を呼べば、確実にオブジェクトを
+破棄してくれます。しかし、このメソッドは推奨されないメソッドと
+なっています。ドキュメントに書いてあるとおり、別のモジュールが
+安全ではない方法で破棄されるかもしれないからです。これがそのまま
+２つめの理由になっています。
+ＣＯＭを破棄する場合、その破棄する順番を正しく行う必要があります。
+しかし、ＪａｖａのＧＣはその順番は保証されていません。
+間違った順番で破棄した場合、System.runFinalizersOnExit(true);に
+書かれたとおり、危険な状態になる可能性があります。
+上記２つの理由により、finalize()を使ってＣＯＭを破棄することは
+できません。
+
+では一体、どのようにすればよいのでしょうか？
+その前に、本来release()をどういう手順で呼べばよいのかを確認します。
+複数のオブジェクトを参照したとき、解放するときには、もっとも最近
+確保したオブジェクトから行う必要があります。つまり、Ｘ、Ｙ、Ｚと
+参照したら、Ｚ、Ｙ、Ｘと解放すればよいのです。ということは、
+オブジェクトを管理するとき、スタック的な構造を使えばよさそうです。
+オブジェクトを参照したとき、push()し、一番最後にpop()すればよいの
+です。
+	参照時	→ stack.push(com);
+	解放時	→ while( ! stack.empty() ) { stack.pop().release(); }
+
+
+オブジェクトが参照されるのはいくつかの限られたパターンがあります。
+IDispatch()でProgIDで生成されたとき、invoke()やget()メソッドで
+IUnknownやIDispatchが戻り値として返ったとき、IUnknown.queryInterface()
+で新しいインターフェースを参照したときなどです。他にも、IEnumVARIANT.next()
+等でも参照します。このように色んなパターンがありますが、それらですべて
+push()すれば、参照されたオブジェクトを管理できそうです。
+しかし、できればそのpush()も内部で自動的にしてくれる方が助かります。
+呼び出し側で明示的に書くのであれば、あまりメリットがありません。
+
+最初はIUnknownの静的なメンバにスタック構造を持たせようと思いました。
+これなら、上記のどのパターンでも、内部的にpush()を呼ぶことができます。
+事実、この方法で１度実装し、ある程度の成功をおさめました。
+	class IUnknown {
+		static Stack stack = new Stack();
+		...
+	}
+
+もし、このＪＣｏｍが比較的短時間で終わる単純なプログラムなら、
+上記の実装で問題ありません。 しかし、もし２４時間、３６５日動き
+つづけるアプリケーションの場合、どうなるでしょう？
+参照されたオブジェクトはいつまでたっても解放されないので、メモリを
+圧迫し続け、ついにはメモリ不足に陥ってしまいます。
+その場合、あるブロック単位で、解放できるような仕組みが必要になって
+きます。例えば、ある関数に入ったときに何らかの目印を付け、関数を
+出るときに、その目印までのオブジェクトを解放するような仕組みです。
+これはネストした構造を持つので、スタック状の構造になります。
+すなわち、２重のスタック構造になります。
+		frames = new Stack();
+		curFrame = new Stack();
+		frames.push(curFrame);
+
+
+また、対象となるＣＯＭが複数になる場合も考えられます。
+例えば、ＤＢとＥＸＣＥＬといった具合です。その場合は、個々の対象ごと
+に別の管理を行いたい場合が出てきます。すると、静的なメンバと
+なることはできません。別のクラスにする必要があります。
+しかし、それでは参照時にpush()する仕組みをどうすればいいのでしょうか？
+
+まず、IDispatchのコンストラクタのように、何もないところからＣＯＭを
+生成する場合を除けば、ＣＯＭから別のＣＯＭを参照していることになります。
+大半の処理は後者の方になります。
+もし、ＣＯＭオブジェクト自身が、自分の管理者を知っていれば、それを
+新しいオブジェクトに対しても引き継げばよいことになります。
+すなわち、IUnknownのメンバにReleaseManagerのポインタを持たせるのです。
+そうでない場合は引数で指定してやるようにします。これにより、ほとんどの
+オブジェクトの参照はReleaseManagerを指定する必要がなくなります。
+IDispachのコンストラクタやIUnknownのコンストラクタでは、引数で渡すよう
+にします。
+	class IUnknown {
+		ReleaseManager rm = null;
+		IUnknown(ReleaseManager rm, ...) {
+			this.rm = rm;
+			...
+			rm.add(new_com);
+		}
+		... queryInterface(...) {
+			...
+			rm.add(new_com);
+			...
+		}
+	}
+
+これで参照カウンタを管理することができます。
+上記の考察の末、現在の設計にたどり着けました。
+
+実際に実装してみると、参照カウンタが増えるタイミングがわかりにくい
+ことがあります。 デバッグを行う場合はどうしても参照カウンタを
+直接見てみたい、という要求がでてきます。
+IUnknown::AddRef()により、現在の参照カウンタの値を知ることが
+できます。このAddRef()は本来は直接呼ぶ必要のないメソッドなので、
+当初は実装しないつもりでしたが、デバッグで必要になってきたので、
+実装しました。AddRef()で現在の参照カウンタを知ることができます。
+その場合は、直後にrelease()してやる必要があります。
+デバッグ用に、IUnknown.toString()、およびReleaseManager().toString()
+を実装しました。ＣＯＭオブジェクトのポインタや参照カウンタの値、
+実際のインターフェース名がわかるので、これを使えば任意の箇所の
+オブジェクトの状態をスナップショット的に見ることができます。
+	System.out.println(rm);
+
+        {
+        {
+        4769e4(1)jp.ne.so_net.ga2.no_ji.jcom.excel8.ExcelApplication
+        476eb8(1)jp.ne.so_net.ga2.no_ji.jcom.IDispatch
+        477c98(1)jp.ne.so_net.ga2.no_ji.jcom.IDispatch
+        477ed4(1)jp.ne.so_net.ga2.no_ji.jcom.IDispatch
+        478004(1)jp.ne.so_net.ga2.no_ji.jcom.IUnknown
+        478694(2)jp.ne.so_net.ga2.no_ji.jcom.IDispatch
+        4788f4(2)jp.ne.so_net.ga2.no_ji.jcom.IDispatch
+        478b30(2)jp.ne.so_net.ga2.no_ji.jcom.IDispatch
+        478694(2)jp.ne.so_net.ga2.no_ji.jcom.IDispatch
+        4788f4(2)jp.ne.so_net.ga2.no_ji.jcom.IDispatch
+        478b30(2)jp.ne.so_net.ga2.no_ji.jcom.IDispatch
+        }
+        }
+
+
+●Excel97のセルの書式設定とVARIANT型の対応（メモ）
+空	VT_EMPTY
+標準	VT_BSTR
+数値	VT_R8
+通貨	VT_CY
+会計	VT_CY
+日時	VT_DATE
+時刻	VT_DATE
+パーセンテージ	VT_R8
+分数	VT_R8
+指数	?
+文字列	VT_BSTR
+その他	?
+ユーザー定義 ?

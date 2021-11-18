@@ -1,0 +1,109 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>Programmers Lab/JCom(Java-COM bridge)</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<HEAD>
+<BODY text=#000000 bgColor=#ffffff>
+<CENTER>
+<H1><FONT color=brown>JCom(Java-COM bridge)</FONT></H1></CENTER>
+<CENTER>by YOSHINORI Watanabe</CENTER>
+<CENTER><IMG src="./jcom.jpg"></CENTER><BR>
+<CENTER><A href="./index.htm">Japanese</A> | 
+English</CENTER><BR>
+<H2>Abstract</H2>
+Do you like Microsoft?<BR>Whether you like them or not, the fact is that most people are using Windows and Office products. These applications generally support
+the Microsoft COM (Component Object Model) Architecture. If we can  have access to COM objects from Java, we 
+can use any package that supports the COM architecture from Java, as if the Java application were a VB/VC++ application.<BR><BR>
+<CENTER><A href="./manga_page1.htm">manga</A></CENTER>
+<H1></H1><BR><BR>
+<H2>Sample</H2><A 
+href="./demo_eng.htm">demo_eng.htm</A> 
+<BR>
+<H2>Download</H2><A 
+href="http://www.hcn.zaq.ne.jp/no-ji/jcom222.zip">jcom222.zip</A>(432,431 bytes)
+<BR>library(jcom.jar+jcom.dll) contains source, documents, and samples.
+
+<BR><BR><BR>
+
+<H2>Setup, Development Information.</H2><A 
+href="./guide_eng.html">guide_eng.html</A><BR><BR><BR>
+
+<H2>License</H2>
+
+<A href="http://www.gnu.org/copyleft/lesser.html">GNU-LGPL</A> 
+
+<BR>
+
+<H2>Support</H2>
+ <A href="http://www.hcn.zaq.ne.jp/no-ji/jcom/index.htm">homepage</A>
+ <BR>
+<A href="mailto:no-ji@hcn.zaq.ne.jp">e-mail</A> 
+<BR>
+<BR>
+<H2>Similar Software</H2>
+<LI><A href="http://users.rcn.com/danadler/jacob/">JACOB</A><BR>
+<LI><A href="http://www.infozoom.de/NS/jacozoom.html">jacoZoom</A><BR>
+<LI><A href="http://www.alphaworks.ibm.com/tech/bridge2java">Bridge2Java</A><BR>
+<LI><A href="http://www.gensym.com/java">BeanXporter</A><BR>
+<LI><A href="http://www.weblogic.com/docs45/classdocs/API_com.html">Weblogic 
+COM</A>
+<LI><A HREF="http://www.nevaobject.com/index.htm">Java2COM</A>
+<BR>
+<LI><A href="http://www.linar.com/">J-Integra</A> <BR>
+
+
+<H2>history</H2>
+2001/05/22<BR>
+<LI>Eric Merritt corrected this page and the guide_eng.html page.
+<BR>
+<BR>
+
+2001/04/27<BR>
+<LI>Similar Software section added.
+<BR>
+<BR>
+
+2001/04/25<BR>
+<LI>Setup/Development information added.
+(<Ahref="./guide_eng.html">guide_eng.html</A>)
+<BR>
+<BR>
+2001/04/05 Ver2.22<BR>
+<LI>Support for ExcelFont added. 
+<LI>VB-COM sample added. demo/vbcom/
+
+<BR><BR>
+2000/11/27 Ver2.21<BR>
+<LI>IPersist added. You can get ProgID/CLSID of COM object any that supports this interface. 
+<LI>Changed the 1st argument of IUnknown#queryInterface(). String -&gt; Class. 
+<LI>if the COM object does not support the specified interface, it now returns (null) at 
+IUnknown#queryInterface().
+<BR><BR>
+2000/10/16 Ver2.20
+<BR>
+<LI>Support for types added (see <Ahref="./guide_eng.html">guide_eng.html</A>)
+<LI>JCom now detects illegal arguments. 
+<LI>Repaired argument list reverse funtionality. 
+<LI>Repaired the ByRef not being reflected. 
+<LI>Repaired String array conversion. 
+<LI>Calls to COM objects written in VB added.
+
+<BR><BR>
+2000/09/04
+<BR>
+<LI>Sample3:generate XML-file from Excel spreadsheet added 
+<LI>Demo English version in process 
+<LI>Corrected "Caution", Thanks to Mr Takahiro.
+
+<BR><BR>
+2000/08/29
+<BR>
+<LI>The call method is now united with COleDispatchDriver::InvokeHelperV() of VC++. 
+<LI>Added support for the VARIANT data type. VT_UI1, VT_BYREF, etc... 
+<LI>Added ITypeInfo, ITypeLib, COM to stable version. 
+<LI>Added installation instructions 
+<LI>English version now available<BR>
+<HR>
+<!-- ================================================================================ -->
+<A href="../index.html">back</A>
+<BR></LI>
+</BODY></HTML>

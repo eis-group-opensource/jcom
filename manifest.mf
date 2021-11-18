@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Name: jp.ne.so_net.ga2.no_ji.jcom
+Legal-Copyright: version.legal_copyright
+File-Version: version.file_version
+Product-Name: version.product_name
+File-Description: version.file_description
+Version-Resource: true
+Company-Name: version.company_name
+Product-Version: version.product_version

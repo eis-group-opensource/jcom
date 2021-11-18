@@ -1,0 +1,76 @@
+VBで作成したＣＯＭを利用する。
+
+使う場合は、Project1.DLLをCOMとしてレジストリに登録する必要があります。
+
+regsvr32 Project1.dll
+
+
+ＶＢのＣＯＭの作り方。
+
+新しいプロジェクトで「ActiveXDLL」を選びます。
+
+プロジェクト「Project1」とクラス「Class1」が生成されますが、
+ＣＯＭを扱う場合、この名前"Project1.Class1"がそのままProgID
+になります。
+
+すべての型が使えるわけではありません。特に、VARIANTには
+対応していないので注意して下さい。
+使える型とＣＯＭ，Ｊａｖａとの対応はドキュメント guide.html
+を参照して下さい。
+
+ＶＢでProject1.dllを生成すると、それだけでレジストリへの登録も
+完了しています。OLE/COM Object Viewer で見ると、以下のように
+なっています。
+
+[
+  uuid(89D32A06-9E40-11D4-9641-E91D15319666),
+  version(1.0),
+  hidden,
+  dual,
+  nonextensible
+]
+dispinterface _Class1 {
+    properties:
+    methods:
+        [id(0x60030000)]
+        unsigned char testByte(
+                        [in] unsigned char a, 
+                        [in, out] unsigned char* b);
+        [id(0x60030001)]
+        short testInteger(
+                        [in] short a, 
+                        [in, out] short* b);
+        [id(0x60030002)]
+        long testLong(
+                        [in] long a, 
+                        [in, out] long* b);
+        [id(0x60030003)]
+        single testSingle(
+                        [in] single a, 
+                        [in, out] single* b);
+        [id(0x60030004)]
+        double testDouble(
+                        [in] double a, 
+                        [in, out] double* b);
+        [id(0x60030005)]
+        VARIANT_BOOL testBoolean(
+                        [in] VARIANT_BOOL a, 
+                        [in, out] VARIANT_BOOL* b);
+        [id(0x60030006)]
+        BSTR testString(
+                        [in] BSTR a, 
+                        [in, out] BSTR* b);
+        [id(0x60030007)]
+        DATE testDate(
+                        [in] DATE a, 
+                        [in, out] DATE* b);
+        [id(0x60030008)]
+        CURRENCY testCurrency(
+                        [in] CURRENCY a, 
+                        [in, out] CURRENCY* b);
+        [id(0x60030009)]
+        void testVoid();
+};
+
+最後のテストはメッセージＢＯＸを表示しています。
+ＪａｖａからＶＢのＧＵＩも扱えるのですね。

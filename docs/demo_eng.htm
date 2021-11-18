@@ -1,0 +1,153 @@
+<html>
+<head><title>Programmers Lab./JCom(Java-COM bridge)</title></head>
+
+<body text="#000000" bgcolor="#FFFFFF">
+
+<center><h1><font color="brown">JCom(Java-COM bridge)</font></h1></center>
+<center><IMG SRC="./jcom.jpg"></center>
+<BR>
+<hr><!------------------------------------------------------------------->
+<H3>Sample1:basic usage</H3>
+<PRE>
+import <font color="blue"><B>jp.ne.so_net.ga2.no_ji.jcom.excel8.*</B></font>;
+import <font color="blue"><B>jp.ne.so_net.ga2.no_ji.jcom.*</B></font>;
+import java.io.File;
+import java.util.Date;
+
+/* sample program using Excel lapper */
+class testExcel {
+    public static void main(String[] args) throws Exception {
+        <font color="blue"><B>ReleaseManager</B></font> rm = new <font color="blue"><B>ReleaseManager();</B></font>
+        try {
+            System.out.println("EXCEL startup...");
+            // if already started, open new window
+            <font color="blue"><B>ExcelApplication</B></font> excel = new <font color="blue"><B>ExcelApplication</B></font>(rm);
+            excel.Visible(true);
+            // display any information
+            System.out.println("Version="+excel.<font color="blue"><B>Version()</B></font>);
+            System.out.println("UserName="+excel.<font color="blue"><B>UserName()</B></font>);
+            System.out.println("Caption="+excel.<font color="blue"><B>Caption()</B></font>);
+            System.out.println("Value="+excel.<font color="blue"><B>Value()</B></font>);
+
+            <font color="blue"><B>ExcelWorkbooks</B></font> xlBooks = excel.<font color="blue"><B>Workbooks()</B></font>;
+            <font color="blue"><B>ExcelWorkbook</B></font> xlBook = xlBooks.<font color="blue"><B>Add</B></font>();   // create new book
+            
+            // enumurate all files
+            System.out.println("set infomation of files in current directory to cell ...");
+            <font color="blue"><B>ExcelWorksheets</B></font> xlSheets = xlBook.<font color="blue"><B>Worksheets</B></font>();
+            <font color="blue"><B>ExcelWorksheet</B></font> xlSheet = xlSheets.<font color="blue"><B>Item</B></font>(1);
+            <font color="blue"><B>ExcelRange</B></font> xlRange = xlSheet.<font color="blue"><B>Cells</B></font>();
+
+            xlRange.<font color="blue"><B>Item(1,1).Value</B></font>("filename" );
+            xlRange.<font color="blue"><B>Item(2,1).Value</B></font>("size" );
+            xlRange.<font color="blue"><B>Item(3,1).Value</B></font>("last modified time");
+            xlRange.<font color="blue"><B>Item(4,1).Value</B></font>("is directory");
+            xlRange.<font color="blue"><B>Item(5,1).Value</B></font>("is file");
+            xlRange.<font color="blue"><B>Item(6,1).Value</B></font>("can read");
+            xlRange.<font color="blue"><B>Item(7,1).Value</B></font>("can write");
+
+            File path = new File("./");
+            String[] filenames = path.list();
+            for(int i=0; i&lt;filenames.length; i++) {
+                File file = new File(filenames[i]);
+                System.out.println(file);
+                xlRange.<font color="blue"><B>Item(1,i+2).Value</B></font>( file.getName() );                // filename(no path)
+                xlRange.<font color="blue"><B>Item(2,i+2).Value</B></font>( (int)file.length() );            // filesize
+                xlRange.<font color="blue"><B>Item(3,i+2).Value</B></font>( new Date(file.lastModified()) ); // last modified time
+                xlRange.<font color="blue"><B>Item(4,i+2).Value</B></font>( file.isDirectory()?"Yes":"No" ); // directory ?
+                xlRange.<font color="blue"><B>Item(5,i+2).Value</B></font>( file.isFile()?"Yes":"No" );      // file ?
+                xlRange.<font color="blue"><B>Item(6,i+2).Value</B></font>( file.canRead()?"Yes":"No" );     // can read ?
+                xlRange.<font color="blue"><B>Item(7,i+2).Value</B></font>( file.canWrite()?"Yes":"No" );    // can write ?
+            }
+            String expression = "=Sum(B2:B"+(filenames.length+1)+")";
+            System.out.println("embed equation, calculate sum of filesize: "+expression);
+            xlRange.<font color="blue"><B>Item(1,filenames.length+2).Value</B></font>("sum");
+            xlRange.<font color="blue"><B>Item(2,filenames.length+2).Formula</B></font>(expression);
+            xlRange.<font color="blue"><B>Columns().AutoFit</B></font>();    // fit columns
+
+            // comment out, if print out.
+            // output default printer.
+//          System.out.println("print out...");
+//          xlSheet.<font color="blue"><B>PrintOut</B></font>();
+
+            // comment out, if book save to file.
+            // if no path, save to(My Documents)
+//          System.out.println("save to file... (My Documents)\\testExcel.xls");
+//          xlBook.<font color="blue"><B>SaveAs</B></font>("testExcel.xls");
+
+            xlBook.<font color="blue"><B>Close</B></font>(false,null,false);
+            excel.<font color="blue"><B>Quit</B></font>();
+
+            System.out.println("thank you .");
+        }
+        catch(Exception e) { e.printStackTrace(); }
+        finally { rm.<font color="blue"><B>release</B></font>(); }
+    }
+}
+</PRE>
+<hr><!------------------------------------------------------------------->
+<H3>Sample2:generate estimate with Excel</H3>
+<UL>
+(jcom)/demo/estimate/<BR>
+</UL>
+It is assumed that there is a system which makes a certain estimate
+automatically.
+Although the system itself is constructed by Java, only the portion
+of an estimate presupposes that it needs to make from Excel.
+Excel can make the high sheet of quality and the printing function of
+Excel is also used this time.<BR>
+<BR>
+First, please see 'estimate.xls' .
+This is equivalent to the stencil file of an estimate.
+Required expression is also embedded and a sushi and the printing
+range are also setting ending now.
+This file is once copied by another name, and value is put into a
+required part to it.
+And it prints and saves and ends.<BR>
+<BR>
+All the copied files shall leave.
+Therefore a file name is made into unique value.
+Make it better that this is in agreement with an estimate No.
+They are held until an estimated effective term passes.
+However, with this sample, it does not mount to there.<BR>
+<BR>
+
+With a sample, although not printed in fact, if the following lines
+are removed from a comment, it will print.<BR>
+<UL>    // est.print_enable = true;</UL>
+When it comes to actual employment, sending to facsimile or mail
+instead of a printer is also considered.
+
+This sample is contained in the file after JCom Ver2.01.
+It operates by Excel 97 and 2000.
+
+
+<hr><!------------------------------------------------------------------->
+<H3>Sample3:generate XML-file from Excel</H3>
+<UL>
+(jcom)/demo/outxml/<BR>
+</UL>
+Required data are extracted from the estimate of the shoes created
+with a sample 2, and it outputs to XML.
+First, Excel file in a current directory is opened, and an assumption
+example is a reverse method and data are acquired from an applicable 
+cell.
+Back makes XML file using PrintWriter.
+Since it is only the output of XML, XML parser is not required of
+this sample.
+However, probably, processing of XML->EXCEL is also possible if there
+is a XML parser.<BR>
+<BR>
+
+<LI>how to run<BR>
+<UL><PRE>
+javac OutXML.java        //compile
+java OutXML              //run
+</PRE></UL>
+<hr><!------------------------------------------------------------------->
+<H3>Sample4:It is the sample that COM made by VB is called. </H3>
+(jcom)/demo/vbcom/<BR>
+<hr><!------------------------------------------------------------------->
+<a href="./index_eng.htm">back</a><br>
+</body>
+</html>
